@@ -426,11 +426,21 @@ Tabel 3. Hasil Accuracy
 
 Gambar 3. Visualisasi Accuracy Model
 
-Dilihat dari Tabel 3. Hasil Accuracy dan Gambar 3. Visualisasi Accuracy Model, dapat diketahui bahwa model dengan algoritma K-Nearest Neighbors (KNN) memiliki tingkat akurasi tertinggi, yaitu sebesar 89%. Oleh karena itu, algoritma KNN dipilih sebagai model terbaik untuk digunakan dalam memprediksi kualitas apel.
+### Kesimpulan Evaluasi
 
-Pemilihan KNN didasarkan pada beberapa pertimbangan. Selain performanya yang baik dalam pengujian, KNN juga merupakan algoritma yang sederhana, mudah dipahami, dan diimplementasikan dibandingkan dengan algoritma lain seperti Random Forrest. Algoritma ini tidak memerlukan banyak parameter untuk disesuaikan, sehingga proses pengembangan model menjadi lebih efisien.
+Model KNN yang diperoleh hasil menunjukkan performa terbaik dalam klasifikasi kualitas apel, dengan akurasi mencapai **89.8%**. Hasil ini menjawab pertanyaan utama dalam proyek, yaitu:
 
-Diharapkan dengan model KNN yang telah dikembangkan, sistem mampu memberikan prediksi kualitas apel secara optimal dan konsisten.
+- **Bagaimana cara membangun model machine learning untuk memprediksi kualitas apel?**
+- **Algoritma apa yang paling akurat?**
+
+Model ini dapat memberikan manfaat nyata bagi petani maupun distributor apel, di antaranya:
+
+- Membantu dalam **klasifikasi otomatis hasil panen**.
+- Mempermudah penentuan **standar mutu dan harga jual**.
+- Mengurangi ketergantungan pada penilaian manual yang subjektif.
+
+Dengan demikian, pendekatan klasifikasi menggunakan KNN tidak hanya memberikan hasil akurasi yang tinggi, tetapi juga **relevan dan aplikatif untuk digunakan dalam sistem pendukung keputusan di sektor hortikultura**, khususnya untuk komoditas apel.
+
 
 
 ## Referensi
