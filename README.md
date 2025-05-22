@@ -14,12 +14,11 @@ Pengembangan model prediksi untuk menilai kualitas apel memiliki potensi besar d
 Berdasarkan uraian di atas, beberapa pertanyaan utama yang ingin dijawab dalam proyek ini antara lain:
 -  Bagaimana merancang model machine learning yang mampu memprediksi kualitas apel berdasarkan data kuantitatif
 -  Algoritma pembelajaran mesin apa yang memberikan performa prediksi terbaik?
--  Bagaimana model tersebut dapat diimplementasikan secara nyata untuk membantu petani dan distributor dalam mengoptimalkan kualitas serta nilai jual apel?
 ### Goals
 Tujuan dari proyek ini meliputi:
 - Mengembangkan model machine learning yang mampu memprediksi kualitas apel berdasarkan data kuantitatif.
 - Membandingkan beberapa algoritma model untuk menemukan akurasi terbaik dalam memprediksi kualitas apel.
-- Mengembangkan sebuah sistem atau aplikasi sederhana yang dapat dimanfaatkan oleh petani dan distributor sebagai alat bantu dalam menilai dan memasarkan produk apel secara lebih efisien.
+- Mengembangkan sebuah sistem atau algoritma sederhana yang dapat dimanfaatkan oleh petani dan distributor sebagai alat bantu dalam menilai dan memasarkan produk apel secara lebih efisien.
 
 ### Solution Statements
 Untuk menjawab permasalahan yang telah dirumuskan, solusi yang diusulkan dalam proyek ini meliputi:
@@ -31,7 +30,7 @@ Untuk menjawab permasalahan yang telah dirumuskan, solusi yang diusulkan dalam p
     * Random Forest
       adalah algoritma machine learning yang kuat yang dapat digunakan untuk berbagai tugas termasuk regresi dan klasifikasi. Ini adalah metode ensemble, yang berarti bahwa model random forest terdiri dari banyak decision tree kecil, yang
       disebut estimator, yang masing-masing menghasilkan prediksi mereka sendiri. Random forest menggabungkan prediksi estimator untuk menghasilkan prediksi yang lebih akurat .[[4](https://www.ibm.com/think/topics/random-forest)]
-    * Naive Bayes adalah Model klasifikasi berbasis probabilistik yang mengasumsikan independensi antar fitur, dan memanfaatkan prinsip Teorema Bayes untuk prediksi.[[6](https://docs.rapidminer.com/latest/studio/operators/modeling/predictive/bayesian/naive_bayes.html#:~:text=Naive%20Bayes%20is%20a%20high,sentiment%20analysis%2C%20and%20recommender%20systems.)]
+    * Naive Bayes adalah Model klasifikasi berbasis probabilistik yang mengasumsikan independensi antar fitur, dan memanfaatkan prinsip Teorema Bayes untuk prediksi.[[5](https://docs.rapidminer.com/latest/studio/operators/modeling/predictive/bayesian/naive_bayes.html#:~:text=Naive%20Bayes%20is%20a%20high,sentiment%20analysis%2C%20and%20recommender%20systems.)]
 
 ## Data Understanding
 ### EDA - Deskripsi Variabel
@@ -63,11 +62,14 @@ Data yang digunakan dalam pembuatan model merupakan data primer, data ini didapa
 Tabel 1. EDA Deskripsi Variabel
 
 Berdasarkan hasil eksplorasi data awal (Exploratory Data Analysis), dataset Apple Quality telah melalui proses cleaning dan normalization oleh pembuatnya, sehingga sangat cocok digunakan, terutama bagi pemula dalam bidang data science.
-Beberapa informasi penting dari dataset ini:
-- Dataset tersedia dalam format CSV (Comma-Separated Values).
-- Memiliki total 4001 sampel (baris) dan 9 fitur (kolom).
-- Terdapat 7 fitur bertipe float64 (numerik kontinu) dan 2 fitur bertipe object (kategorikal).
-- Ditemukan 1 missing value dalam keseluruhan dataset.
+Berikut Informasi Pada Dataset :
+- Dataset memiliki format CSV (Comma-Seperated Values).
+- Dataset memiliki 4001 sample dengan 9 fitur.
+- Dataset memiliki 7 fitur bertipe float64 dan 2 fitur bertipe object.
+- ada missing value pada dataset dan akan dihapus
+- ada 1 fitur yang tidak digunakan dan akan dihapus
+- 7 kolom memiliki tipe data numerik float64, yaitu: A_id, Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
+- 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
   
 ### Variabel-variabel dalam Dataset
 - `A_id` : Merupakan identitas unik untuk masing-masing apel
