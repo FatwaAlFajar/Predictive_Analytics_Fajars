@@ -136,14 +136,13 @@ Pada Gambar 2a, digunakan visualisasi pairplot dari pustaka Seaborn untuk meliha
 Sedangkan pada Gambar 2b, ditampilkan correlation matrix yang mengukur hubungan antar fitur numerik. Terlihat bahwa fitur Juiciness memiliki korelasi positif sebesar `0.24` terhadap target Acidity, yang berarti semakin juicy buahnya, semakin tinggi tingkat keasamannya, meskipun hubungan ini tidak terlalu kuat.
 
 ## Data Preparation
-Tahapan Data Preparation mencakup tiga langkah utama: Data Gathering, Data Assessing, dan Data Cleaning.
+Tahapan Data Preparation mencakup Beberapa Langkah
 
 1. Data Gathering, 
-Proses pengambilan data dilakukan dengan mengimpor dataset dan memastikannya dapat dibaca dengan baik dalam format DataFrame menggunakan pustaka Pandas.
+Proses pengambilan data dilakukan dengan mengimpor dataset dan memastikannya dapat dibaca dengan baik dalam format DataFrame menggunakan pustaka Pandas. ini sudah kita lakukan sebelumnya karena data preparation hanya menampilkan perubahan yang terjadi
 
 2. Data Assessing, 
 Dilakukan eksplorasi awal untuk mengidentifikasi permasalahan data, antara lain:
-- Duplicate data: Adanya baris data yang identik dan harus dihapus.
 - Missing value: Informasi yang tidak tersedia dalam satu atau beberapa kolom.
 - Outlier: Nilai ekstrem yang menyimpang jauh dari distribusi normal data.
 
@@ -152,6 +151,46 @@ Tindakan yang dilakukan dalam proses pembersihan data mencakup:
 - Konversi tipe kolom: Menyesuaikan tipe data agar sesuai kebutuhan analisis.
 - Train-test split: Membagi dataset menjadi data pelatihan dan pengujian.
 - Normalisasi: Menyesuaikan skala fitur agar memiliki rentang nilai yang sebanding, untuk meningkatkan performa model machine learning.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+### 1. Melakukan Penghapusan Kolom "A_id" Karena tidak diperlukan
+penghapusan kolom ini dilakukan karena A_id tidak memberikan dampak pada model yang dilatih
+
+| kode |
+| --- |
+| data.drop("A_id", axis=1, inplace=True) |
+
+### 2. menampilkan ringkasan informasi tentang DataFrame
+Ini dilakukan untuk memastikan kalau kolom A_id sudah dihapus dari Dataset
+
+| kode |
+| --- |
+| df.indo() |
+
+|Column |    Non-Null Count | Dtype  |
+| ------ | ------ |------ |
+Size     |    4000 non-null  | float64|
+| ------ | ------ |------ |
+Weight   |    4000 non-null   |float64|
+| ------ | ------ |------ |
+Sweetness  |  4000 non-null |  float64|
+| ------ | ------ |------ |
+Crunchiness | 4000 non-null  | float64|
+| ------ | ------ |------ |
+Juiciness  |  4000 non-null  | float64|
+| ------ | ------ |------ |
+Ripeness  |   4000 non-null  | float64|
+| ------ | ------ |------ |
+Acidity   |   4001 non-null  | object |
+| ------ | ------ |------ |
+|Quality|      4000 non-null  | object |
+
+Berdasarkan hasil dari metode df.info(), dapat disimpulkan bahwa:
+- 6 kolom memiliki tipe data numerik float64, yaitu: Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
+- 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
+
+
 
 | A_id | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
 | ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
@@ -178,7 +217,7 @@ Selanjutnya, dilakukan pembagian data menjadi data latih dan data uji menggunaka
 Untuk proses normalisasi, digunakan library sklearn.preprocessing dengan metode MinMaxScaler. Metode ini mentransformasi setiap fitur numerik ke dalam skala rentang [0, 1], yang bertujuan untuk menghindari dominasi fitur tertentu akibat perbedaan skala nilai. Seluruh proses ini penting untuk memastikan model yang dibangun dapat bekerja secara optimal dan memberikan hasil prediksi yang akurat.
 
 # Modeling
-Pada proyek ini, dilakukan pemodelan menggunakan lima algoritma machine learning yang umum digunakan dalam kasus klasifikasi. Tujuannya adalah untuk membandingkan performa masing-masing algoritma dan memilih model dengan akurasi terbaik dalam mengklasifikasikan kualitas apel. Adapun kelima algoritma tersebut adalah sebagai berikut:
+Pada proyek ini, dilakukan pemodelan menggunakan tiga algoritma machine learning yang umum digunakan dalam kasus klasifikasi. Tujuannya adalah untuk membandingkan performa masing-masing algoritma dan memilih model dengan akurasi terbaik dalam mengklasifikasikan kualitas apel. Adapun ketiga algoritma tersebut adalah sebagai berikut:
 
 ## 1. K-Nearest Neighbors (KNN)
 
