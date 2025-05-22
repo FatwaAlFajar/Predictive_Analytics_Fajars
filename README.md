@@ -166,7 +166,7 @@ Ini dilakukan untuk memastikan kalau kolom A_id sudah dihapus dari Dataset
 
 | kode |
 | --- |
-| df.indo() |
+| data.indo() |
 
 |Column |    Non-Null Count | Dtype  |
 | ------ | ------ |------ |
@@ -192,15 +192,18 @@ Berdasarkan hasil dari metode df.info(), dapat disimpulkan bahwa:
 
 ### 3. Penyesuaian Terhadap Missing Value dan Outlier
 
+membuang nilai kosong
 |kode|
 | --- |
 |data_miss = data[data.isnull().any(axis=1)]
 data_miss|
 
+|     | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
+| ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
+| 4000 | NaN | NaN | NaN |NaN | NaN| NaN	| Created_by_Nidula_Elgiriyewithana  | NaN |
 
 
-
-### 3.1 Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
+### 4. Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
 
 |kode|
 | ----------------------- |
@@ -213,7 +216,7 @@ data.isnull().sum().sum()|
 
 Data Tidak Relevan Sudah Kita Buang
 
-### 3.2 Mengubah Tipe Data Kolom Acidity Yang Semula "Object" menjadi float64
+### 5. Mengubah Tipe Data Kolom Acidity Yang Semula "Object" menjadi float64
 
 |kode|
 | --- |
@@ -239,7 +242,9 @@ Acidity   |   4001 non-null  | Float64 |
 | ------ | ------ |------ |
 |Quality|      4000 non-null  | object |
 
-### 3.3 mengetahui dimensi dari DataFrame data.
+Terlihat bahwa terdapat 7 kolom bertipe data float64 dan 1 kolom bertipe object. ( hal ini karena kita sudah mengubah Acidity yang awalnya bertipe "Object" menjadi "float64" )
+
+### 6. mengetahui dimensi dari DataFrame data.
 
 |kode|
 |---|
@@ -248,13 +253,18 @@ Acidity   |   4001 non-null  | Float64 |
 |hasil|
 |---|
 |(4000, 8)|
-Setelah menghapus data yang tidak relevan sebelumnya, jumlah dataset kini menjadi 4000.
+Setelah menghapus data yang tidak relevan sebelumnya, jumlah dataset kini menjadi 4000 yang awalnya 4001.
 
+### 7. Visualisasi Outlier
+Visualisasi Outlier digunakan untuk memberi gambaran bahwa masih ada data yang sekiranya jauh dari kata sempurna untuk pelatihan model dan melakukannya secara visual pada setiap fitur numerik
 
-| A_id | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
-| ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
-| NaN | NaN | NaN | NaN |NaN | NaN| NaN	| Created_by_Nidula_Elgiriyewithana  | NaN |
-
+|Code|
+| --- |
+|# Untuk mendeteksi outlier secara visual pada setiap fitur numerik.
+data_outlier = data.select_dtypes(exclude=['object'])
+for column in data_outlier:
+   plt.figure()
+   sns.boxplot(data=data_outlier, x=column)|
 
 Tabel 2. Melihat data missing value
 
