@@ -184,12 +184,71 @@ Ripeness  |   4000 non-null  | float64|
 | ------ | ------ |------ |
 Acidity   |   4001 non-null  | object |
 | ------ | ------ |------ |
-|Quality|      4000 non-null  | object |
+|Quality|    4000 non-null  | object |
 
 Berdasarkan hasil dari metode df.info(), dapat disimpulkan bahwa:
 - 6 kolom memiliki tipe data numerik float64, yaitu: Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
 - 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
 
+### 3. Penyesuaian Terhadap Missing Value dan Outlier
+
+|kode|
+| --- |
+|data_miss = data[data.isnull().any(axis=1)]
+data_miss|
+
+
+
+
+### 3.1 Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
+
+|kode|
+| ----------------------- |
+|data.dropna(inplace=True)
+data.isnull().sum().sum()|
+
+|Hasil|
+| --- |
+| np.int64(0) |
+
+Data Tidak Relevan Sudah Kita Buang
+
+### 3.2 Mengubah Tipe Data Kolom Acidity Yang Semula "Object" menjadi float64
+
+|kode|
+| --- |
+|data["Acidity"] = data["Acidity"].astype("float64")|
+
+Setelah itu kembali menampilkan data.info()
+
+|Column |    Non-Null Count | Dtype  |
+| ------ | ------ |------ |
+Size     |    4000 non-null  | float64|
+| ------ | ------ |------ |
+Weight   |    4000 non-null   |float64|
+| ------ | ------ |------ |
+Sweetness  |  4000 non-null |  float64|
+| ------ | ------ |------ |
+Crunchiness | 4000 non-null  | float64|
+| ------ | ------ |------ |
+Juiciness  |  4000 non-null  | float64|
+| ------ | ------ |------ |
+Ripeness  |   4000 non-null  | float64|
+| ------ | ------ |------ |
+Acidity   |   4001 non-null  | Float64 |
+| ------ | ------ |------ |
+|Quality|      4000 non-null  | object |
+
+### 3.3 mengetahui dimensi dari DataFrame data.
+
+|kode|
+|---|
+|data.shape|
+
+|hasil|
+|---|
+|(4000, 8)|
+Setelah menghapus data yang tidak relevan sebelumnya, jumlah dataset kini menjadi 4000.
 
 
 | A_id | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
