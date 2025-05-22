@@ -192,6 +192,8 @@ Berdasarkan hasil dari metode df.info(), dapat disimpulkan bahwa:
 
 ### 3. Penyesuaian Terhadap Missing Value dan Outlier
 
+Pada proyek ini tidak ditemukan adanya data duplikat, namun terdapat missing value pada salah satu fitur. Jumlah missing value yang ditemukan hanyalah 1 data, sehingga untuk penanganannya digunakan metode dropping, yaitu menghapus baris yang memiliki nilai kosong. Metode ini dipilih karena dampaknya terhadap keseluruhan data sangat kecil dan tidak signifikan.
+
 membuang nilai kosong
 |kode|
 | --- |
@@ -266,11 +268,17 @@ for column in data_outlier:
    plt.figure()
    sns.boxplot(data=data_outlier, x=column)|
 
-Tabel 2. Melihat data missing value
+![Outlier1](assets/Size.png)
+![Outlier2](assets/Weight.png)
+![Outlier3](assets/Sweetness.png)
+![Outlier4](assets/Crunchiness.png)
+![Outlier5](assets/Juiciness.png)
+![Outlier6](assets/Ripeness.png)
+![Outlier7](assets/Acidity.png)
 
-Pada proyek ini tidak ditemukan adanya data duplikat, namun terdapat missing value pada salah satu fitur. Jumlah missing value yang ditemukan hanyalah 1 data, sehingga untuk penanganannya digunakan metode dropping, yaitu menghapus baris yang memiliki nilai kosong. Metode ini dipilih karena dampaknya terhadap keseluruhan data sangat kecil dan tidak signifikan.
+### 8. Mengeliminasi Outlier dari Dataset
 
-Selain itu, proses deteksi dan penanganan outlier juga dilakukan dengan metode dropping menggunakan pendekatan IQR (Interquartile Range). IQR digunakan untuk mengidentifikasi nilai-nilai ekstrem yang berada jauh dari sebaran data utama. Rumus perhitungannya adalah:
+proses deteksi dan penanganan outlier juga dilakukan dengan metode dropping menggunakan pendekatan IQR (Interquartile Range). IQR digunakan untuk mengidentifikasi nilai-nilai ekstrem yang berada jauh dari sebaran data utama. Rumus perhitungannya adalah:
 
 $$ IQR = Q_3 - Q_1$$
 
@@ -281,7 +289,47 @@ Nilai yang berada di bawah ( Q1 - 1.5 x IQR ) atau di atas ( Q3 + 1.5 x IQR ) di
 
 Setelah dilakukan penghapusan outlier menggunakan metode IQR (Interquartile Range), jumlah data pada dataset berkurang dari semula 4000 menjadi 3790 sampel. Pengurangan ini dilakukan untuk memastikan bahwa data yang digunakan dalam proses pelatihan dan pengujian model bersih dari nilai-nilai ekstrem yang dapat mengganggu kinerja model.
 
+### 9. Mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
+
+|kode|
+| --- |
+| # mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
+data['Quality'] = data['Quality'].apply(lambda x: 1 if x == 'good' else 0)  # good:1 , bad:0 |
+
+|kode|
+| --- |
+|# Untuk memisahkan data fitur dan label sebelum melakukan pelatihan model machine learning.
+x = data.loc[:, data.columns != 'Quality']
+y = data['Quality']
+x.shape, y.shape|
+
+| hasil |
+| --- |
+|((3790, 7), (3790,))|
+
+Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari sebuah dataset sebelum model machine learning dilatih.
+
+### 10. Train-Test-Split
+
+| kode |
+| --- |
+|# Split data menjadi 80% untuk pelatihan dan 20% untuk pengujian|
+|x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=60)|
+
 Selanjutnya, dilakukan pembagian data menjadi data latih dan data uji menggunakan fungsi train_test_split dari library sklearn.model_selection. Pembagian dilakukan dengan proporsi 80% untuk data latih dan 20% untuk data uji, serta menggunakan nilai random_state=60 agar hasil pembagian data dapat direproduksi secara konsisten.
+
+### 11. Normalisasi
+|kode|
+| --- |
+|# Normalisasi fitur menggunakan Min-Max Scaling|
+|normalizer = MinMaxScaler()|
+|# Replace 'X_train' with 'x_train'.|
+|normalizer.fit(x_train)|
+| --- |
+|X_train_scaled = normalizer.transform(x_train)|
+|X_test_scaled = normalizer.transform(x_test)|
+
+Mengapa penting? Untuk memastikan semua fitur (kolom) memiliki pengaruh yang seimbang saat digunakan oleh algoritma machine learning, karena banyak algoritma sensitif terhadap perbedaan skala nilai.
 
 Untuk proses normalisasi, digunakan library sklearn.preprocessing dengan metode MinMaxScaler. Metode ini mentransformasi setiap fitur numerik ke dalam skala rentang [0, 1], yang bertujuan untuk menghindari dominasi fitur tertentu akibat perbedaan skala nilai. Seluruh proses ini penting untuk memastikan model yang dibangun dapat bekerja secara optimal dan memberikan hasil prediksi yang akurat.
 
@@ -294,7 +342,7 @@ K-Nearest Neighbors (KNN) adalah algoritma machine learning yang bersifat non-pa
 
 Pada proyek ini, KNN digunakan dengan parameter sebagai berikut:
 
-- n_neighbors: menentukan jumlah tetangga terdekat yang akan digunakan untuk membuat prediksi.
+- n_neighbors=5: 5 tetangga terdekat yang akan digunakan untuk membuat prediksi.
 - weights='distance': memberikan bobot lebih besar kepada tetangga yang lebih dekat dengan data yang diprediksi.
 
 Keunggulan KNN:
@@ -314,7 +362,7 @@ Kelemahan KNN:
 Random Forest adalah algoritma ensemble learning yang membangun sejumlah Decision Tree secara acak, lalu menggabungkan hasilnya melalui voting (untuk klasifikasi) atau rata-rata (untuk regresi). Tujuan utama dari pendekatan ini adalah untuk meningkatkan akurasi dan stabilitas model, sekaligus mengurangi risiko overfitting yang sering terjadi pada decision tree tunggal.
 
 Pada proyek ini, digunakan parameter:
-- max_depth: untuk mengatur kedalaman maksimum dari masing-masing pohon keputusan (decision tree) dalam hutan.
+- max_depth=20: untuk mengatur kedalaman maksimum dari masing-masing pohon keputusan (decision tree) dalam hutan, disini memakai 20.
 
 Keunggulan Random Forest:
 
@@ -363,15 +411,13 @@ Keterangan:
 - FN (False Negative): Data positif yang salah diprediksi sebagai negatif (Kesalahan Tipe II).
 - Rumus ini memecah akurasi menjadi rasio antara data yang diklasifikasikan dengan benar (TP dan TN) dengan jumlah total data. Mengalikan dengan 100% mengubah rasio menjadi persentase.
 
-Berikut hasil accuracy 5 buah model yang latih:
+Berikut hasil accuracy 3 buah model yang latih:
 
 | Model | Accuracy |
 | ------ | ------ |
-| KNN | 0.90 |
-| RandomForest  | 0.89 |
-| SVM | 0.89 |
+| KNN | 0.89 |
+| RandomForest  | 0.88 |
 | Naive Bayes | 0.64 |
-| Extra Trees Classifier | 0.87 |
 
 
 Tabel 3. Hasil Accuracy
@@ -380,12 +426,11 @@ Tabel 3. Hasil Accuracy
 
 Gambar 3. Visualisasi Accuracy Model
 
-Dilihat dari Tabel 3. Hasil Accuracy dan Gambar 3. Visualisasi Accuracy Model, dapat diketahui bahwa model dengan algoritma K-Nearest Neighbors (KNN) memiliki tingkat akurasi tertinggi, yaitu sebesar 90%. Oleh karena itu, algoritma KNN dipilih sebagai model terbaik untuk digunakan dalam memprediksi kualitas apel.
+Dilihat dari Tabel 3. Hasil Accuracy dan Gambar 3. Visualisasi Accuracy Model, dapat diketahui bahwa model dengan algoritma K-Nearest Neighbors (KNN) memiliki tingkat akurasi tertinggi, yaitu sebesar 89%. Oleh karena itu, algoritma KNN dipilih sebagai model terbaik untuk digunakan dalam memprediksi kualitas apel.
 
-Pemilihan KNN didasarkan pada beberapa pertimbangan. Selain performanya yang baik dalam pengujian, KNN juga merupakan algoritma yang sederhana, mudah dipahami, dan diimplementasikan dibandingkan dengan algoritma lain seperti Extra Trees Classifier. Algoritma ini tidak memerlukan banyak parameter untuk disesuaikan, sehingga proses pengembangan model menjadi lebih efisien.
+Pemilihan KNN didasarkan pada beberapa pertimbangan. Selain performanya yang baik dalam pengujian, KNN juga merupakan algoritma yang sederhana, mudah dipahami, dan diimplementasikan dibandingkan dengan algoritma lain seperti Random Forrest. Algoritma ini tidak memerlukan banyak parameter untuk disesuaikan, sehingga proses pengembangan model menjadi lebih efisien.
 
 Diharapkan dengan model KNN yang telah dikembangkan, sistem mampu memberikan prediksi kualitas apel secara optimal dan konsisten.
-
 
 
 ## Referensi
