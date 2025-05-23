@@ -296,6 +296,8 @@ Setelah dilakukan penghapusan outlier menggunakan metode IQR (Interquartile Rang
 | # mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
 data['Quality'] = data['Quality'].apply(lambda x: 1 if x == 'good' else 0)  # good:1 , bad:0 |
 
+
+### 10. memisahkan data fitur dan label sebelum melakukan pelatihan
 |kode|
 | --- |
 |# Untuk memisahkan data fitur dan label sebelum melakukan pelatihan model machine learning.
@@ -309,7 +311,7 @@ x.shape, y.shape|
 
 Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari sebuah dataset sebelum model machine learning dilatih.
 
-### 10. Train-Test-Split
+### 11. Train-Test-Split
 
 | kode |
 | --- |
@@ -318,7 +320,7 @@ Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari seb
 
 Selanjutnya, dilakukan pembagian data menjadi data latih dan data uji menggunakan fungsi train_test_split dari library sklearn.model_selection. Pembagian dilakukan dengan proporsi 80% untuk data latih dan 20% untuk data uji, serta menggunakan nilai random_state=60 agar hasil pembagian data dapat direproduksi secara konsisten.
 
-### 11. Normalisasi
+### 12. Normalisasi
 |kode|
 | --- |
 |# Normalisasi fitur menggunakan Min-Max Scaling|
