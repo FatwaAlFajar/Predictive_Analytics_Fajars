@@ -4,6 +4,7 @@ Proyek machine learning ini berfokus pada bidang **Holtikultura/Pertanian Apel/P
 
 ### Latar Belakang
 
+
 ![foto apel](https://png.pngtree.com/thumb_back/fw800/background/20230730/pngtree-thousands-of-red-apples-stacked-up-in-piles-on-the-counter-image_10175220.jpg)
 
 Sebagai salah satu produsen utama apel di kawasan Asia Tenggara, Indonesia menghasilkan lebih dari 523.738 Ton pada Tahun 2022. Komoditas ini memiliki peranan penting, terutama dalam mendukung penghidupan petani lokal serta pertumbuhan sektor agrikultur nasional [[1](https://dataindonesia.id/agribisnis-kehutanan/detail/produksi-apel-di-indonesia-sebanyak-523738-ton-pada-2022)].Namun demikian, menjaga mutu apel tetap menjadi tantangan besar di industri ini. Kualitas yang menurun, misalnya karena ukuran yang terlalu kecil, tingkat kematangan yang tidak seragam, atau tekstur yang kurang renyah, dapat menurunkan nilai jual dan menyebabkan kerugian di berbagai lini distribusi. Dengan memanfaatkan pendekatan predictive analytics, pelaku industri apel dapat memperoleh gambaran prediktif terkait mutu buah[[2](https://www.researchgate.net/publication/378686300_Optimasi_Algoritma_Naive_Bayes_Untuk_Klasifikasi_Buah_Apel_Berdasarkan_Fitur_Warna_RGB/fulltext/65e46bc8adc608480af78397/Optimasi-Algoritma-Naive-Bayes-Untuk-Klasifikasi-Buah-Apel-Berdasarkan-Fitur-Warna-RGB.pdf?origin=scientificContributions)]. Teknologi ini membuka peluang untuk optimalisasi panen bagi petani, pengurangan limbah distribusi bagi penyalur, dan jaminan mutu bagi konsumen. Selain itu, prediksi berbasis data juga dapat membantu menciptakan kestabilan harga dan ketersediaan apel berkualitas di pasar.
@@ -127,7 +128,7 @@ Fitur numerik lainnya seperti Weight, Sweetness, Crunchiness, Juiciness, Ripenes
 
 Gambar 2a. Analisis Multivariat
 
-![Multivariate Analysis](assets/Matrix_Korelasi.png)
+![Multivariate Analysis](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Matrix_Korelasi.png)
 
 Gambar 2b. Analisis Matriks Korelasi
 
