@@ -136,6 +136,8 @@ Pada Gambar 2a, digunakan visualisasi pairplot dari pustaka Seaborn untuk meliha
 
 Sedangkan pada Gambar 2b, ditampilkan correlation matrix yang mengukur hubungan antar fitur numerik. Terlihat bahwa fitur Juiciness memiliki korelasi positif sebesar `0.24` terhadap target Acidity, yang berarti semakin juicy buahnya, semakin tinggi tingkat keasamannya, meskipun hubungan ini tidak terlalu kuat.
 
+Ada sekitar 210 outlier yang harus kita singkirkan agar model bisa lebih baik
+
 ## Data Preparation
 Tahapan Data Preparation mencakup Beberapa Langkah
 
