@@ -67,10 +67,12 @@ Berikut Informasi Pada Dataset :
 - Dataset memiliki format CSV (Comma-Seperated Values).
 - Dataset memiliki 4001 sample dengan 9 fitur.
 - Dataset memiliki 7 fitur bertipe float64 dan 2 fitur bertipe object.
-- ada missing value pada dataset dan akan dihapus
+- ada 1 missing value pada dataset dan akan dihapus
 - ada 1 fitur yang tidak digunakan dan akan dihapus
 - 7 kolom memiliki tipe data numerik float64, yaitu: A_id, Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
 - 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
+- ada 210 outlier yang akan dihapus
+- Tidak ada data duplikat
   
 ### Variabel-variabel dalam Dataset
 - `A_id` : Merupakan identitas unik untuk masing-masing apel
@@ -137,6 +139,13 @@ Pada Gambar 2a, digunakan visualisasi pairplot dari pustaka Seaborn untuk meliha
 Sedangkan pada Gambar 2b, ditampilkan correlation matrix yang mengukur hubungan antar fitur numerik. Terlihat bahwa fitur Juiciness memiliki korelasi positif sebesar `0.24` terhadap target Acidity, yang berarti semakin juicy buahnya, semakin tinggi tingkat keasamannya, meskipun hubungan ini tidak terlalu kuat.
 
 Ada sekitar 210 outlier yang harus kita singkirkan agar model bisa lebih baik
+![Outlier1](assets/Size.png)
+![Outlier2](assets/Weight.png)
+![Outlier3](assets/Sweetness.png)
+![Outlier4](assets/Crunchiness.png)
+![Outlier5](assets/Juiciness.png)
+![Outlier6](assets/Ripeness.png)
+![Outlier7](assets/Acidity.png)
 
 ## Data Preparation
 Tahapan Data Preparation mencakup Beberapa Langkah
@@ -270,14 +279,6 @@ data_outlier = data.select_dtypes(exclude=['object'])
 for column in data_outlier:
    plt.figure()
    sns.boxplot(data=data_outlier, x=column)|
-
-![Outlier1](assets/Size.png)
-![Outlier2](assets/Weight.png)
-![Outlier3](assets/Sweetness.png)
-![Outlier4](assets/Crunchiness.png)
-![Outlier5](assets/Juiciness.png)
-![Outlier6](assets/Ripeness.png)
-![Outlier7](assets/Acidity.png)
 
 ### 8. Mengeliminasi Outlier dari Dataset
 
