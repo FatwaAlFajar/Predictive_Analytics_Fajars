@@ -259,7 +259,7 @@ Juiciness  |  4000 non-null  | float64|
 | ------ | ------ |------ |
 Ripeness  |   4000 non-null  | float64|
 | ------ | ------ |------ |
-Acidity   |   4001 non-null  | Float64 |
+Acidity   |   4000 non-null  | Float64 |
 | ------ | ------ |------ |
 |Quality|      4000 non-null  | object |
 
