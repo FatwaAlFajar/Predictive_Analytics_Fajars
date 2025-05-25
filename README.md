@@ -96,11 +96,13 @@ Dari sembilan fitur yang tersedia dalam dataset, diketahui bahwa fitur A_id hany
 
 ### EDA - Univariate Analysis ( Analisis Univariat )
 
-![Analisis Univariat (Data Kategori)](https://i.ibb.co/0MRrJCC/jumlah-kualitas-datasets.png)
+![13f79c57-ec39-4f96-b371-e4bab4154ca5](https://github.com/user-attachments/assets/518521db-bf5b-475d-b7d9-153fd9218d49)
+
 
 Gambar 1a. Analisis Univariat (Data Bertipe Kategori) 
 
-![Univariate Analysis](https://i.ibb.co/V2mQ2dK/EDA-Univariate.png)
+![4f4fc852-43c2-47de-a33f-ca5cb4541a8c](https://github.com/user-attachments/assets/97684b43-aad0-479a-994f-399af7db3c73)
+
 
 Gambar 1b. Analisis Univariat (Data Bertipe Numerik) 
 
