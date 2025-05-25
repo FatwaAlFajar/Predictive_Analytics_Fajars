@@ -73,6 +73,13 @@ Berikut Informasi Pada Dataset :
 - 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
 - ada 210 outlier yang akan dihapus
 - Tidak ada data duplikat
+
+### Kualitas Data
+- **Jumlah Data**: 4001 baris × 9 kolom
+- **Missing Values**: 1 baris
+- **Outlier**: 210 baris berdasarkan analisis IQR
+- **Data Duplikat**: Tidak ditemukan
+- **Kolom tidak relevan**: `A_id` dihapus karena hanya ID
   
 ### Variabel-variabel dalam Dataset
 - `A_id` : Merupakan identitas unik untuk masing-masing apel
@@ -269,20 +276,9 @@ Terlihat bahwa terdapat 7 kolom bertipe data float64 dan 1 kolom bertipe object.
 |(4000, 8)|
 Setelah menghapus data yang tidak relevan sebelumnya, jumlah dataset kini menjadi 4000 yang awalnya 4001.
 
-### 7. Visualisasi Outlier
-Visualisasi Outlier digunakan untuk memberi gambaran bahwa masih ada data yang sekiranya jauh dari kata sempurna untuk pelatihan model dan melakukannya secara visual pada setiap fitur numerik
+### 7. Mengeliminasi Outlier dari Dataset
 
-|Code|
-| --- |
-|# Untuk mendeteksi outlier secara visual pada setiap fitur numerik.
-data_outlier = data.select_dtypes(exclude=['object'])
-for column in data_outlier:
-   plt.figure()
-   sns.boxplot(data=data_outlier, x=column)|
-
-### 8. Mengeliminasi Outlier dari Dataset
-
-proses deteksi dan penanganan outlier juga dilakukan dengan metode dropping menggunakan pendekatan IQR (Interquartile Range). IQR digunakan untuk mengidentifikasi nilai-nilai ekstrem yang berada jauh dari sebaran data utama. Rumus perhitungannya adalah:
+Berdasarkan hasil deteksi sebelumnya, terdapat sekitar 210 outlier yang tersebar pada beberapa fitur numerik. Untuk menangani hal ini, digunakan metode IQR (Interquartile Range) yang efektif dalam mengidentifikasi nilai-nilai ekstrem di luar distribusi utama data. Rumus perhitungannya adalah:
 
 $$ IQR = Q_3 - Q_1$$
 
@@ -291,9 +287,9 @@ $$ IQR = Q_3 - Q_1$$
 
 Nilai yang berada di bawah ( Q1 - 1.5 x IQR ) atau di atas ( Q3 + 1.5 x IQR ) dianggap sebagai **outlier** dan akan dihapus dari dataset untuk menjaga kualitas dan konsistensi data selama proses pelatihan model.
 
-Setelah dilakukan penghapusan outlier menggunakan metode IQR (Interquartile Range), jumlah data pada dataset berkurang dari semula 4000 menjadi 3790 sampel. Pengurangan ini dilakukan untuk memastikan bahwa data yang digunakan dalam proses pelatihan dan pengujian model bersih dari nilai-nilai ekstrem yang dapat mengganggu kinerja model.
+Sebagai hasil dari proses ini, jumlah data berkurang dari 4000 menjadi 3790 baris. Langkah ini bertujuan untuk menjaga kualitas data dan memastikan performa model machine learning tetap optimal tanpa gangguan dari nilai-nilai ekstrem.
 
-### 9. Mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
+### 8. Mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
 
 |kode|
 | --- |
@@ -301,7 +297,7 @@ Setelah dilakukan penghapusan outlier menggunakan metode IQR (Interquartile Rang
 data['Quality'] = data['Quality'].apply(lambda x: 1 if x == 'good' else 0)  # good:1 , bad:0 |
 
 
-### 10. memisahkan data fitur dan label sebelum melakukan pelatihan
+### 9. memisahkan data fitur dan label sebelum melakukan pelatihan
 |kode|
 | --- |
 |# Untuk memisahkan data fitur dan label sebelum melakukan pelatihan model machine learning.
@@ -315,7 +311,7 @@ x.shape, y.shape|
 
 Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari sebuah dataset sebelum model machine learning dilatih.
 
-### 11. Train-Test-Split
+### 10. Train-Test-Split
 
 | kode |
 | --- |
@@ -324,7 +320,7 @@ Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari seb
 
 Selanjutnya, dilakukan pembagian data menjadi data latih dan data uji menggunakan fungsi train_test_split dari library sklearn.model_selection. Pembagian dilakukan dengan proporsi 80% untuk data latih dan 20% untuk data uji, serta menggunakan nilai random_state=60 agar hasil pembagian data dapat direproduksi secara konsisten.
 
-### 12. Normalisasi
+### 11. Normalisasi
 |kode|
 | --- |
 |# Normalisasi fitur menggunakan Min-Max Scaling|
