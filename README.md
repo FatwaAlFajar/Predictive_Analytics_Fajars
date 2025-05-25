@@ -147,6 +147,11 @@ Ada sekitar 210 outlier yang harus kita singkirkan agar model bisa lebih baik
 ![Outlier6](assets/Ripeness.png)
 ![Outlier7](assets/Acidity.png)
 
+dan ada 1 missing values yang tidak terlalu berpengaruh ke model yang dibuat
+|     | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
+| ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
+| 4000 | NaN | NaN | NaN |NaN | NaN| NaN	| Created_by_Nidula_Elgiriyewithana  | NaN |
+
 ## Data Preparation
 Tahapan Data Preparation mencakup Beberapa Langkah
 
@@ -211,11 +216,6 @@ membuang nilai kosong
 | --- |
 |data_miss = data[data.isnull().any(axis=1)]
 data_miss|
-
-|     | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
-| ------ | ------ |------ | ------ | ------ | ------ |------ | ------ |------ |
-| 4000 | NaN | NaN | NaN |NaN | NaN| NaN	| Created_by_Nidula_Elgiriyewithana  | NaN |
-
 
 ### 4. Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
 
