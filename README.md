@@ -134,7 +134,7 @@ Fitur numerik lainnya seperti Weight, Sweetness, Crunchiness, Juiciness, Ripenes
 
 ### EDA - Multivariate Analysis
 
-![Multivariate Analysis](assets/Multivariate_Analysis.png)
+![Multivariate Analysis](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Multivariate_Analysis.png)
 
 
 Gambar 2a. Analisis Multivariat
@@ -148,13 +148,13 @@ Pada Gambar 2a, digunakan visualisasi pairplot dari pustaka Seaborn untuk meliha
 Sedangkan pada Gambar 2b, ditampilkan correlation matrix yang mengukur hubungan antar fitur numerik. Terlihat bahwa fitur Juiciness memiliki korelasi positif sebesar `0.24` terhadap target Acidity, yang berarti semakin juicy buahnya, semakin tinggi tingkat keasamannya, meskipun hubungan ini tidak terlalu kuat.
 
 Ada sekitar 210 outlier yang harus kita singkirkan agar model bisa lebih baik
-![Outlier1](assets/Size.png)
-![Outlier2](assets/Weight.png)
-![Outlier3](assets/Sweetness.png)
-![Outlier4](assets/Crunchiness.png)
-![Outlier5](assets/Juiciness.png)
-![Outlier6](assets/Ripeness.png)
-![Outlier7](assets/Acidity.png)
+![Outlier1](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Size.png)
+![Outlier2](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Weight.png)
+![Outlier3](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Sweetness.png)
+![Outlier4](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Crunchiness.png)
+![Outlier5](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Juiciness.png)
+![Outlier6](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Ripeness.png)
+![Outlier7](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Acidity.png)
 
 dan ada 1 missing values yang tidak terlalu berpengaruh ke model yang dibuat
 |     | Size | Weight | Sweetness | Crunchiness | Juiciness | Ripeness | Acidity | Quality |
@@ -426,7 +426,7 @@ Berikut hasil accuracy 3 buah model yang latih:
 
 Tabel 3. Hasil Accuracy
 
-![Akurasi Model](assets/Akurasi_Model.png)
+![Akurasi Model](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Akurasi_Model.png)
 
 Gambar 3. Visualisasi Accuracy Model
 
