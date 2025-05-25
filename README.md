@@ -71,14 +71,8 @@ Berikut Informasi Pada Dataset :
 - ada 1 fitur yang tidak digunakan dan akan dihapus
 - 7 kolom memiliki tipe data numerik float64, yaitu: A_id, Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
 - 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
-- ada 210 outlier yang akan dihapus
-- Tidak ada data duplikat
-
-### Kualitas Data
-- **Jumlah Data**: 4001 baris × 9 kolom
-- **Missing Values**: 1 baris
-- **Outlier**: 210 baris berdasarkan analisis IQR
-- **Data Duplikat**: Tidak ditemukan
+- ada 210 outlier yang akan dihapus berdasarkan analisis IQR
+- Data Duplikat Tidak Ditemukan
 - **Kolom tidak relevan**: `A_id` dihapus karena hanya ID
   
 ### Variabel-variabel dalam Dataset
