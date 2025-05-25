@@ -190,7 +190,7 @@ Ini dilakukan untuk memastikan kalau kolom A_id sudah dihapus dari Dataset
 
 | kode |
 | --- |
-| data.indo() |
+| data.info() |
 
 |Column |    Non-Null Count | Dtype  |
 | ------ | ------ |------ |
