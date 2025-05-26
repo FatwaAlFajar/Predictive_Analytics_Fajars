@@ -128,12 +128,11 @@ Fitur numerik lainnya seperti Weight, Sweetness, Crunchiness, Juiciness, Ripenes
 
 ### EDA - Multivariate Analysis
 
-![Multivariate Analysis](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Multivariate_Analysis.png)
-
+![Multivariate_Analysis](https://github.com/user-attachments/assets/cfbbc97e-fd13-450e-bba4-473cc4db6186)
 
 Gambar 2a. Analisis Multivariat
 
-![Multivariate Analysis](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Matrix_Korelasi.png)
+![Matrix_Korelasi](https://github.com/user-attachments/assets/785266c1-db35-470f-9806-d9a863fe5adb)
 
 Gambar 2b. Analisis Matriks Korelasi
 
@@ -142,18 +141,11 @@ Pada Gambar 2a, digunakan visualisasi pairplot dari pustaka Seaborn untuk meliha
 Sedangkan pada Gambar 2b, ditampilkan correlation matrix yang mengukur hubungan antar fitur numerik. Terlihat bahwa fitur Juiciness memiliki korelasi positif sebesar `0.24` terhadap target Acidity, yang berarti semakin juicy buahnya, semakin tinggi tingkat keasamannya, meskipun hubungan ini tidak terlalu kuat.
 
 ## Data Preparation
-Tahapan Data Preparation mencakup Beberapa Langkah
+Tahapan Data Preparation ini mencakup  :
 
-1. Data Gathering, 
-Proses pengambilan data dilakukan dengan mengimpor dataset dan memastikannya dapat dibaca dengan baik dalam format DataFrame menggunakan pustaka Pandas. ini sudah kita lakukan sebelumnya karena data preparation hanya menampilkan perubahan yang terjadi
-
-2. Data Assessing, 
-Dilakukan eksplorasi awal untuk mengidentifikasi permasalahan data, antara lain:
-- Missing value: Informasi yang tidak tersedia dalam satu atau beberapa kolom.
-- Outlier: Nilai ekstrem yang menyimpang jauh dari distribusi normal data.
-
-3. Data Cleaning, 
+1. Data Cleaning :
 Tindakan yang dilakukan dalam proses pembersihan data mencakup:
+- penyesuaian data : ada beberapa data yang tidak sesuai yang akan mempengaruhi hasil akhir model dan akan dibersihkan.
 - Konversi tipe kolom: Menyesuaikan tipe data agar sesuai kebutuhan analisis.
 - Train-test split: Membagi dataset menjadi data pelatihan dan pengujian.
 - Normalisasi: Menyesuaikan skala fitur agar memiliki rentang nilai yang sebanding, untuk meningkatkan performa model machine learning.
@@ -167,36 +159,7 @@ penghapusan kolom ini dilakukan karena A_id tidak memberikan dampak pada model y
 | --- |
 | data.drop("A_id", axis=1, inplace=True) |
 
-### 2. menampilkan ringkasan informasi tentang DataFrame
-Ini dilakukan untuk memastikan kalau kolom A_id sudah dihapus dari Dataset
-
-| kode |
-| --- |
-| data.info() |
-
-|Column |    Non-Null Count | Dtype  |
-| ------ | ------ |------ |
-Size     |    4000 non-null  | float64|
-| ------ | ------ |------ |
-Weight   |    4000 non-null   |float64|
-| ------ | ------ |------ |
-Sweetness  |  4000 non-null |  float64|
-| ------ | ------ |------ |
-Crunchiness | 4000 non-null  | float64|
-| ------ | ------ |------ |
-Juiciness  |  4000 non-null  | float64|
-| ------ | ------ |------ |
-Ripeness  |   4000 non-null  | float64|
-| ------ | ------ |------ |
-Acidity   |   4001 non-null  | object |
-| ------ | ------ |------ |
-|Quality|    4000 non-null  | object |
-
-Berdasarkan hasil dari metode df.info(), dapat disimpulkan bahwa:
-- 6 kolom memiliki tipe data numerik float64, yaitu: Size, Weight, Sweetness, Crunchiness, Juiciness, dan Ripeness.
-- 2 kolom lainnya bertipe data object, yaitu: Acidity dan Quality.
-
-### 3. Penyesuaian Terhadap Missing Value dan Outlier
+### 2. Penyesuaian Terhadap Missing Value
 
 Pada proyek ini tidak ditemukan adanya data duplikat, namun terdapat missing value pada salah satu fitur. Jumlah missing value yang ditemukan hanyalah 1 data, sehingga untuk penanganannya digunakan metode dropping, yaitu menghapus baris yang memiliki nilai kosong. Metode ini dipilih karena dampaknya terhadap keseluruhan data sangat kecil dan tidak signifikan.
 
@@ -206,7 +169,7 @@ membuang nilai kosong
 |data_miss = data[data.isnull().any(axis=1)]
 data_miss|
 
-### 4. Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
+### 3. Menghapus semua baris di dataframe data yang mengandung setidaknya satu nilai kosong (NaN).
 
 |kode|
 | ----------------------- |
@@ -219,46 +182,13 @@ data.isnull().sum().sum()|
 
 Data Tidak Relevan Sudah Kita Buang
 
-### 5. Mengubah Tipe Data Kolom Acidity Yang Semula "Object" menjadi float64
+### 4. Mengubah Tipe Data Kolom Acidity Yang Semula "Object" menjadi float64
 
 |kode|
 | --- |
 |data["Acidity"] = data["Acidity"].astype("float64")|
 
-Setelah itu kembali menampilkan data.info()
-
-|Column |    Non-Null Count | Dtype  |
-| ------ | ------ |------ |
-Size     |    4000 non-null  | float64|
-| ------ | ------ |------ |
-Weight   |    4000 non-null   |float64|
-| ------ | ------ |------ |
-Sweetness  |  4000 non-null |  float64|
-| ------ | ------ |------ |
-Crunchiness | 4000 non-null  | float64|
-| ------ | ------ |------ |
-Juiciness  |  4000 non-null  | float64|
-| ------ | ------ |------ |
-Ripeness  |   4000 non-null  | float64|
-| ------ | ------ |------ |
-Acidity   |   4000 non-null  | Float64 |
-| ------ | ------ |------ |
-|Quality|      4000 non-null  | object |
-
-Terlihat bahwa terdapat 7 kolom bertipe data float64 dan 1 kolom bertipe object. ( hal ini karena kita sudah mengubah Acidity yang awalnya bertipe "Object" menjadi "float64" )
-
-### 6. mengetahui dimensi dari DataFrame data.
-
-|kode|
-|---|
-|data.shape|
-
-|hasil|
-|---|
-|(4000, 8)|
-Setelah menghapus data yang tidak relevan sebelumnya, jumlah dataset kini menjadi 4000 yang awalnya 4001.
-
-### 7. Mengeliminasi Outlier dari Dataset
+### 5. Mengeliminasi Outlier dari Dataset
 
 Berdasarkan hasil deteksi sebelumnya, terdapat sekitar 210 outlier yang tersebar pada beberapa fitur numerik. Untuk menangani hal ini, digunakan metode IQR (Interquartile Range) yang efektif dalam mengidentifikasi nilai-nilai ekstrem di luar distribusi utama data. Rumus perhitungannya adalah:
 
@@ -271,7 +201,7 @@ Nilai yang berada di bawah ( Q1 - 1.5 x IQR ) atau di atas ( Q3 + 1.5 x IQR ) di
 
 Sebagai hasil dari proses ini, jumlah data berkurang dari 4000 menjadi 3790 baris. Langkah ini bertujuan untuk menjaga kualitas data dan memastikan performa model machine learning tetap optimal tanpa gangguan dari nilai-nilai ekstrem.
 
-### 8. Mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
+### 6. Mengubah nilai di kolom Quality dari bentuk teks menjadi angka.
 
 |kode|
 | --- |
@@ -279,7 +209,7 @@ Sebagai hasil dari proses ini, jumlah data berkurang dari 4000 menjadi 3790 bari
 data['Quality'] = data['Quality'].apply(lambda x: 1 if x == 'good' else 0)  # good:1 , bad:0 |
 
 
-### 9. memisahkan data fitur dan label sebelum melakukan pelatihan
+### 7. memisahkan data fitur dan label sebelum melakukan pelatihan
 |kode|
 | --- |
 |# Untuk memisahkan data fitur dan label sebelum melakukan pelatihan model machine learning.
@@ -293,7 +223,7 @@ x.shape, y.shape|
 
 Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari sebuah dataset sebelum model machine learning dilatih.
 
-### 10. Train-Test-Split
+### 8. Train-Test-Split
 
 | kode |
 | --- |
@@ -302,7 +232,7 @@ Kode tersebut digunakan untuk memisahkan fitur (X) dan label/target (y) dari seb
 
 Selanjutnya, dilakukan pembagian data menjadi data latih dan data uji menggunakan fungsi train_test_split dari library sklearn.model_selection. Pembagian dilakukan dengan proporsi 80% untuk data latih dan 20% untuk data uji, serta menggunakan nilai random_state=60 agar hasil pembagian data dapat direproduksi secara konsisten.
 
-### 11. Normalisasi
+### 9. Normalisasi
 |kode|
 | --- |
 |# Normalisasi fitur menggunakan Min-Max Scaling|
@@ -406,7 +336,7 @@ Berikut hasil accuracy 3 buah model yang latih:
 
 Tabel 3. Hasil Accuracy
 
-![Akurasi Model](https://github.com/FatwaAlFajar/Predictive_Analytics_Fajars/blob/main/assets/Akurasi_Model.png)
+![Akurasi_Model](https://github.com/user-attachments/assets/3bd88f0c-bbb1-48e3-839f-71c76a318d3e)
 
 Gambar 3. Visualisasi Accuracy Model
 
